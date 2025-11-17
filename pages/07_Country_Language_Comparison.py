@@ -23,6 +23,7 @@ else:
         **Question:** How does engagement in climate change articles vary across languages in given countries?
         
         **Interaction:** Use the selection boxes below to select a country and languages, then and compare views across a chosen date range.
+            Only countries with at least 10 entries per month are included.
     """)
     st.markdown("---")
     
@@ -47,7 +48,7 @@ else:
     with col_dates:
         dateRange_start = st.date_input(
             "Select a start date:",
-            value = '2025-10-01',
+            value = '2024-10-06',
             min_value="2023-02-06",
             max_value="2025-10-06"
         )
@@ -76,10 +77,10 @@ else:
         .sum()
         .reset_index()
     )
-
+        
     # --- Chart ---
-    st.subheader("Climate Change Article Views by Language Wiki")
-    fig = px.line(
+        st.subheader("Climate Change Article Views by Language Wiki")
+        fig = px.line(
             weekly,
             x="date",
             y="views",
@@ -88,4 +89,4 @@ else:
             title="Weekly Views by Language",
             labels={"date": "Week", "views": "Views"}
         )
-    st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
